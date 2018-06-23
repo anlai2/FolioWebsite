@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from '../../assets/folioIcon.png';
 
 const NavItem = props => {
   const pageURI = window.location.pathname + window.location.search;
@@ -23,7 +24,14 @@ class Navbar extends React.Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="/">
-          Folio
+          <img
+            src={logo}
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+            alt=""
+          />
+          | Folio
         </a>
         <button
           className="navbar-toggler"
@@ -40,7 +48,7 @@ class Navbar extends React.Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <NavItem path="/" name="Home" />
-            <NavItem path="/page2" name="Portfolio" />
+            <NavItem path="/portfolio" name="Portfolio" />
           </ul>
         </div>
       </nav>
