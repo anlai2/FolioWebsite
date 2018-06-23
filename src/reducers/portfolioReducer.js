@@ -1,6 +1,4 @@
 import {
-  COIN_CHECKED,
-  COIN_UNCHECKED,
   COINS_SAVED,
   ASSETS_CHANGED,
   ASSETS_SAVED,
@@ -14,17 +12,6 @@ const INITIAL_STATE = {
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case COIN_CHECKED:
-      return {
-        checked: [...state.checked, action.payload]
-      };
-    case COIN_UNCHECKED:
-      return {
-        checked: [
-          ...state.checked.slice(0, action.payload),
-          ...state.checked.slice(action.payload + 1)
-        ]
-      };
     case COINS_SAVED:
       return {
         ...state,

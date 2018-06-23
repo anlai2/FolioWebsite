@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  coinChecked,
-  coinUnchecked,
-  coinsSaved
-} from '../../actions/portfolioActions';
+import { coinsSaved } from '../../actions/portfolioActions';
 import PropTypes from 'prop-types';
 
 class AddCoin extends Component {
@@ -95,8 +91,6 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    coinChecked,
-    coinUnchecked,
     coinsSaved
   }
 )(AddCoin);
