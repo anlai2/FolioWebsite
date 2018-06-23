@@ -8,11 +8,11 @@ import {
 } from '../actions/types';
 
 const INITIAL_STATE = {
-  checked: [],
+  checked: ['ETH'],
   coins: {}
 };
 
-export default (state = INITIAL_STATE, action) => {
+export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case COIN_CHECKED:
       return {
@@ -47,4 +47,4 @@ export default (state = INITIAL_STATE, action) => {
     default:
       return state;
   }
-};
+}

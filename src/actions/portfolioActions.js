@@ -22,6 +22,7 @@ export const coinUnchecked = ({ value }) => ({
 export const coinsSaved = () => dispatch => {
   dispatch({ type: COINS_SAVED });
 };
+
 export const coinsFetched = () => {
   const { currentUser } = firebase.auth();
 
