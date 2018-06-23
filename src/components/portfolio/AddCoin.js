@@ -52,12 +52,17 @@ class AddCoin extends Component {
                         checked.indexOf(coin.symbol) > -1
                           ? this.setState({
                               checked: [
-                                ...this.state.checked.slice(0, coin.symbol),
-                                ...this.state.checked.slice(coin.symbol + 1)
+                                ...checked.slice(
+                                  0,
+                                  checked.indexOf(coin.symbol)
+                                ),
+                                ...checked.slice(
+                                  checked.indexOf(coin.symbol) + 1
+                                )
                               ]
                             })
                           : this.setState({
-                              checked: [...this.state.checked, coin.symbol]
+                              checked: [...checked, coin.symbol]
                             });
                       }}
                     />
