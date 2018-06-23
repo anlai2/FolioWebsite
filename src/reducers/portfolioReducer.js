@@ -6,7 +6,8 @@ import {
 } from '../actions/types';
 
 const INITIAL_STATE = {
-  coins: {}
+  coins: {},
+  checked: []
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -14,7 +15,7 @@ export default function(state = INITIAL_STATE, action) {
     case COINS_SAVED:
       return {
         ...state,
-        coins: Object.assign(...state.checked.map(x => ({ [x]: 0 })))
+        checked: action.payload
       };
     case ASSETS_CHANGED:
       return {

@@ -7,8 +7,11 @@ import {
   PORTFOLIO_FETCH
 } from './types';
 
-export const coinsSaved = () => dispatch => {
-  dispatch({ type: COINS_SAVED });
+export const coinsSaved = coins => dispatch => {
+  dispatch({
+    type: COINS_SAVED,
+    payload: coins
+  });
 };
 
 export const coinsFetched = () => {

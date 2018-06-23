@@ -16,7 +16,7 @@ class AddCoin extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    console.log(this.state.checked);
+    this.props.coinsSaved(this.state.checked);
   };
 
   componentWillMount() {
