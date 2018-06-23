@@ -35,12 +35,16 @@ class AddCoin extends Component {
         <div className="row">
           <div className="col-md-12">
             <p className="lead text-muted">Add Coins</p>
-            <li className="form-check">
+            <div className="form-check">
               <ul className="list-group">
                 {this.state.coins.map((coin, index) => (
-                  <li className="list-group-item" key={index}>
+                  <li
+                    className="list-group-item"
+                    key={index}
+                    style={{ backgrounColor: '#00ff00' }}
+                  >
                     <input
-                      className="form-check-input"
+                      className="form-check-input col-md-3"
                       type="checkbox"
                       value=""
                       id="defaultCheck1"
@@ -62,7 +66,9 @@ class AddCoin extends Component {
                             });
                       }}
                     />
-                    <label className="form-check-label">{coin.name}</label>
+                    <label className="form-check-label col-md-9">
+                      {coin.name}
+                    </label>
                   </li>
                 ))}
               </ul>
@@ -72,7 +78,7 @@ class AddCoin extends Component {
                 className="btn btn-info btn-block mt-4"
                 onClick={this.onSubmit}
               />
-            </li>
+            </div>
           </div>
         </div>
       </div>
