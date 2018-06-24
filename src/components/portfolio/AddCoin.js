@@ -1,7 +1,7 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { coinsSaved } from '../../actions/portfolioActions';
-import PropTypes from 'prop-types';
 
 class AddCoin extends Component {
   constructor() {
@@ -16,7 +16,11 @@ class AddCoin extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    this.props.coinsSaved(this.state.checked, this.props.history);
+    if (!_.isEmpty(this.state.checked)) {
+      this.props.coinsSaved(this.state.checked, this.props.history);
+    } else {
+      alert('Please select at least one coin.');
+    }
   };
 
   componentWillMount() {
@@ -41,7 +45,7 @@ class AddCoin extends Component {
                   <li
                     className="list-group-item"
                     key={index}
-                    style={{ backgrounColor: '#00ff00' }}
+                    style={{ backgroundColor: index % 2 ? '#f0f0f5' : 'white' }}
                   >
                     <input
                       className="form-check-input col-md-3"
@@ -49,20 +53,15 @@ class AddCoin extends Component {
                       value=""
                       id="defaultCheck1"
                       onChange={() => {
-                        checked.indexOf(coin.symbol) > -1
+                        checked.indexOf(coin) > -1
                           ? this.setState({
                               checked: [
-                                ...checked.slice(
-                                  0,
-                                  checked.indexOf(coin.symbol)
-                                ),
-                                ...checked.slice(
-                                  checked.indexOf(coin.symbol) + 1
-                                )
+                                ...checked.slice(0, checked.indexOf(coin)),
+                                ...checked.slice(checked.indexOf(coin) + 1)
                               ]
                             })
                           : this.setState({
-                              checked: [...checked, coin.symbol]
+                              checked: [...checked, coin]
                             });
                       }}
                     />
@@ -86,16 +85,8 @@ class AddCoin extends Component {
   }
 }
 
-AddCoin.propTypes = {
-  checked: PropTypes.array
-};
-
-const mapStateToProps = state => ({
-  portfolio: state.portfolio
-});
-
 export default connect(
-  mapStateToProps,
+  null,
   {
     coinsSaved
   }
