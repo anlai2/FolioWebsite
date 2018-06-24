@@ -7,11 +7,12 @@ import {
   PORTFOLIO_FETCH
 } from './types';
 
-export const coinsSaved = coins => dispatch => {
+export const coinsSaved = (coins, history) => dispatch => {
   dispatch({
     type: COINS_SAVED,
     payload: coins
   });
+  history.push('/addasset');
 };
 
 export const coinsFetched = () => {

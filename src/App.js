@@ -8,6 +8,7 @@ import Navbar from './components/common/Navbar';
 import CoinList from './components/home/CoinList';
 import Portfolio from './components/portfolio/Portfolio';
 import AddCoin from './components/portfolio/AddCoin';
+import AddAsset from './components/portfolio/AddAsset';
 
 class App extends Component {
   componentWillMount() {
@@ -31,6 +32,7 @@ class App extends Component {
             <Route exact path="/" component={CoinList} />
             <Route exact path="/portfolio" component={Portfolio} />
             <Route exact path="/addcoin" component={AddCoin} />
+            <Route exact path="/addasset" component={AddAsset} />
           </div>
         </Router>
       </Provider>
