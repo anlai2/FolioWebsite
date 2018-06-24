@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 
 import store from './store';
 import Navbar from './components/common/Navbar';
+import Footer from './components/common/Footer';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import CoinList from './components/home/CoinList';
@@ -37,6 +38,7 @@ class App extends Component {
             <Route exact path="/portfolio" component={Portfolio} />
             <Route exact path="/addcoin" component={AddCoin} />
             <Route exact path="/addasset" component={AddAsset} />
+            <Footer />
           </div>
         </Router>
       </Provider>

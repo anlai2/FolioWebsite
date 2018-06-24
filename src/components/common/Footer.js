@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Footer extends Component {
-  render() {
-    return <div className="footer">Andy Lai 2018</div>;
-  }
-}
-
-export default Footer;
+export default () => {
+  return (
+    <footer className="mt-5 p-4 text-center">
+      Copyright &copy; {new Date().getFullYear()} Folio
+    </footer>
+  );
+};
