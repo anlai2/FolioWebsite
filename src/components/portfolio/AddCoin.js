@@ -52,6 +52,7 @@ class AddCoin extends Component {
                       type="checkbox"
                       value=""
                       id="defaultCheck1"
+                      style={{ left: 35 }}
                       onChange={() => {
                         checked.indexOf(coin) > -1
                           ? this.setState({
@@ -65,7 +66,10 @@ class AddCoin extends Component {
                             });
                       }}
                     />
-                    <label className="form-check-label col-md-9">
+                    <label
+                      className="form-check-label col-md-9"
+                      style={{ left: 35 }}
+                    >
                       {coin.name}
                     </label>
                   </li>

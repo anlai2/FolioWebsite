@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { assetChanged } from '../../actions/portfolioActions';
 
 class AddAsset extends Component {
-  componentDidMount() {
-    console.log(this.props.portfolio);
-  }
   render() {
-    const { checked } = this.props.portfolio;
+    const { checked, coins } = this.props.portfolio;
+    console.log(coins);
 
     return (
       <div className="container">
@@ -22,20 +21,13 @@ class AddAsset extends Component {
                   <input
                     className="form-control col-md-3"
                     placeholder="0.000000"
-                    value=""
                     id="defaultCheck1"
-                    onChange={() => {
-                      checked.indexOf(coin.symbol) > -1
-                        ? this.setState({
-                            checked: [
-                              ...checked.slice(0, checked.indexOf(coin.symbol)),
-                              ...checked.slice(checked.indexOf(coin.symbol) + 1)
-                            ]
-                          })
-                        : this.setState({
-                            checked: [...checked, coin.symbol]
-                          });
-                    }}
+                    onChange={val =>
+                      this.props.assetChanged({
+                        coin: coin.symbol,
+                        value: val.target.value
+                      })
+                    }
                   />
                 </li>
               ))}
@@ -59,5 +51,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {}
+  { assetChanged }
 )(AddAsset);
