@@ -1,0 +1,60 @@
+import firebase from 'firebase';
+import {
+  COINS_SAVED,
+  COINS_FETCHED,
+  ASSETS_CHANGED,
+  ASSETS_SAVED,
+  PORTFOLIO_FETCH
+} from './types';
+
+export const coinsSaved = (coins, history) => dispatch => {
+  dispatch({
+    type: COINS_SAVED,
+    payload: coins
+  });
+  history.push('/addasset');
+};
+
+export const coinsFetched = () => {
+  const { currentUser } = firebase.auth();
+
+  return dispatch => {
+    dispatch({ type: COINS_FETCHED });
+    firebase
+      .database()
+      .ref(`/portfolios/${currentUser.uid}/checked`)
+      .on('value', snapshot => {
+        dispatch({ type: COINS_FETCHED, payload: snapshot.val() });
+      });
+  };
+};
+
+export const assetChanged = ({ coin, value }) => ({
+  type: ASSETS_CHANGED,
+  payload: { coin, value }
+});
+
+export const assetSaved = coins => {
+  const { currentUser } = firebase.auth();
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/portfolios/${currentUser.uid}`)
+      .set(coins)
+      .then(dispatch({ type: ASSETS_SAVED }));
+  };
+};
+
+export const fetchPortfolio = () => {
+  const { currentUser } = firebase.auth();
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`portfolios/${currentUser.uid}/coins`)
+      .on('value', snapshot => {
+        dispatch({ type: PORTFOLIO_FETCH, payload: snapshot.val() });
+      });
+  };
+};
