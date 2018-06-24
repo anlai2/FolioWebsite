@@ -51,6 +51,12 @@ class Navbar extends React.Component {
             <NavItem path="/portfolio" name="Portfolio" />
           </ul>
         </div>
+        <div className="form-inline">
+          <ul className="navbar-nav mr-auto">
+            <NavItem path="/signup" name="Sign Up" />
+            <NavItem path="/login" name="Login" />
+          </ul>
+        </div>
       </nav>
     );
   }
