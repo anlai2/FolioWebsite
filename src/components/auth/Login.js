@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { loginUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
 
 class Login extends Component {
@@ -6,18 +8,22 @@ class Login extends Component {
     super();
     this.state = {
       email: '',
-      password: '',
-      errors: {}
+      password: ''
     };
   }
+
+  onSubmit = () => {
+    const { email, password } = this.state;
+    const { history } = this.props;
+
+    this.props.loginUser({ email, password, history });
+  };
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   render() {
-    const { errors } = this.state;
-
     return (
       <div className="login">
         <div className="container">
@@ -32,7 +38,6 @@ class Login extends Component {
                   type="email"
                   value={this.state.email}
                   onChange={this.onChange}
-                  error={errors.email}
                 />
 
                 <TextFieldGroup
@@ -41,9 +46,12 @@ class Login extends Component {
                   type="password"
                   value={this.state.password}
                   onChange={this.onChange}
-                  error={errors.password}
                 />
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <input
+                  type="submit"
+                  className="btn btn-info btn-block mt-4"
+                  onClick={this.onSubmit}
+                />
               </form>
             </div>
           </div>
@@ -53,4 +61,11 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);
